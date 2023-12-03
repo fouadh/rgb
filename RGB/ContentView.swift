@@ -24,6 +24,19 @@ struct ColorComponent {
   }
 }
 
+struct ColorComponentView: View {
+  var label: String
+  @Binding var value: ColorComponent
+
+  var body: some View {
+    Text(label)
+    HStack {
+      Slider(value: $value.value, in: 0...255)
+      Text("\(value.valueAsInt)")
+    }
+  }
+}
+
 struct ContentView: View {
   @State private var redComponent = ColorComponent(value: defaultRed)
   @State private var greenComponent = ColorComponent(value: defaultGreen)
@@ -36,23 +49,9 @@ struct ContentView: View {
       RoundedRectangle(cornerRadius: 0)
         .fill(shapeColor)
 
-      Text("Red")
-      HStack {
-        Slider(value: $redComponent.value, in: 0...255)
-        Text("\(redComponent.valueAsInt)")
-      }
-
-      Text("Green")
-      HStack {
-        Slider(value: $greenComponent.value, in: 0...255)
-        Text("\(greenComponent.valueAsInt)")
-      }
-
-      Text("Blue")
-      HStack {
-        Slider(value: $blueComponent.value, in: 0...255)
-        Text("\(blueComponent.valueAsInt)")
-      }
+      ColorComponentView(label: "Red", value: $redComponent)
+      ColorComponentView(label: "Green", value: $greenComponent)
+      ColorComponentView(label: "Blue", value: $blueComponent)
 
       Button("Set Color") {
         shapeColor = Color(red: redComponent.value/255, green: greenComponent.value/255, blue: blueComponent.value/255)
