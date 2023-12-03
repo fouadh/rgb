@@ -7,11 +7,6 @@
 
 import SwiftUI
 
-let defaultRed = 50.0
-let defaultGreen = 50.0
-let defaultBlue = 50.0
-let defaultColor = Color(red: defaultRed / 255, green: defaultGreen / 255, blue: defaultBlue / 255)
-
 struct ColorComponent {
   var value: Double!
 
@@ -19,12 +14,16 @@ struct ColorComponent {
     self.value = value
   }
 
-  var valueAsInt: Int {
+  var intValue: Int {
     Int(value.rounded())
+  }
+
+  var normalizedValue: Double {
+    return value / 255
   }
 }
 
-struct ColorComponentView: View {
+struct ColorComponentSlider: View {
   var label: String
   @Binding var value: ColorComponent
 
@@ -32,15 +31,21 @@ struct ColorComponentView: View {
     Text(label)
     HStack {
       Slider(value: $value.value, in: 0...255)
-      Text("\(value.valueAsInt)")
+      Text("\(value.intValue)")
     }
   }
 }
 
+let defaultRed = ColorComponent(value: 128.0)
+let defaultGreen = ColorComponent(value: 128.0)
+let defaultBlue = ColorComponent(value: 128.0)
+let defaultColor = Color(red: defaultRed.normalizedValue, green: defaultGreen.normalizedValue, blue: defaultBlue.normalizedValue)
+
+
 struct ContentView: View {
-  @State private var redComponent = ColorComponent(value: defaultRed)
-  @State private var greenComponent = ColorComponent(value: defaultGreen)
-  @State private var blueComponent = ColorComponent(value: defaultBlue)
+  @State private var redComponent = defaultRed
+  @State private var greenComponent = defaultGreen
+  @State private var blueComponent = defaultBlue
   @State private var shapeColor = defaultColor
 
   var body: some View {
@@ -48,13 +53,11 @@ struct ContentView: View {
       Text("Color Picker").font(.title)
       RoundedRectangle(cornerRadius: 0)
         .fill(shapeColor)
-
-      ColorComponentView(label: "Red", value: $redComponent)
-      ColorComponentView(label: "Green", value: $greenComponent)
-      ColorComponentView(label: "Blue", value: $blueComponent)
-
+      ColorComponentSlider(label: "Red", value: $redComponent)
+      ColorComponentSlider(label: "Green", value: $greenComponent)
+      ColorComponentSlider(label: "Blue", value: $blueComponent)
       Button("Set Color") {
-        shapeColor = Color(red: redComponent.value/255, green: greenComponent.value/255, blue: blueComponent.value/255)
+        shapeColor = Color(red: redComponent.normalizedValue, green: greenComponent.normalizedValue, blue: blueComponent.normalizedValue)
       }
     }
     .padding()
