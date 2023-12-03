@@ -7,14 +7,18 @@
 
 import SwiftUI
 
+let defaultRed = 50.0
+let defaultColor = Color(red: defaultRed / 255, green: 0.8392, blue: 1.0)
+
 struct ContentView: View {
-  @State private var red = 50.0
+  @State private var red = defaultRed
+  @State private var shapeColor = defaultColor
 
   var body: some View {
     VStack(alignment: .center, spacing: 20) {
       Text("Color Picker").font(.title)
       RoundedRectangle(cornerRadius: 0)
-        .fill(Color(red: red/255, green: 50/255, blue: 50/255))
+        .fill(shapeColor)
       Text("Red")
       HStack {
         Slider(value: $red, in: 0...255)
@@ -33,7 +37,7 @@ struct ContentView: View {
         Text("50")
       }
       Button("Set Color") {
-
+        shapeColor = Color(red: red/255, green: 50.0/255, blue: 50.0/255)
       }
     }
     .padding()
