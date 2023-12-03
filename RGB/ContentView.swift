@@ -8,17 +8,34 @@
 import SwiftUI
 
 struct ContentView: View {
-    var body: some View {
-        VStack {
-            Image(systemName: "globe")
-                .imageScale(.large)
-                .foregroundStyle(.tint)
-            Text("Hello, world!")
-        }
-        .padding()
+  var body: some View {
+    VStack(alignment: .center, spacing: 20) {
+      Text("Color Picker").font(.title)
+      RoundedRectangle(cornerRadius: 0)
+      Text("Red")
+      HStack {
+        Slider(value: .constant(50), in: 0...255)
+        Text("50")
+      }
+
+      Text("Green")
+      HStack {
+        Slider(value: .constant(50), in: 0...255)
+        Text("50")
+      }
+      Text("Blue")
+      HStack {
+        Slider(value: .constant(50), in: 0...255)
+        Text("50")
+      }
+      Button("Set Color") {
+
+      }
     }
+    .padding()
+  }
 }
 
 #Preview {
-    ContentView()
+  ContentView()
 }
