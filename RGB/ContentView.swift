@@ -8,10 +8,12 @@
 import SwiftUI
 
 let defaultRed = 50.0
-let defaultColor = Color(red: defaultRed / 255, green: 0.8392, blue: 1.0)
+let defaultGreen = 50.0
+let defaultColor = Color(red: defaultRed / 255, green: defaultGreen / 255, blue: 1.0)
 
 struct ContentView: View {
   @State private var red = defaultRed
+  @State private var green = defaultGreen
   @State private var shapeColor = defaultColor
 
   var body: some View {
@@ -28,8 +30,9 @@ struct ContentView: View {
 
       Text("Green")
       HStack {
-        Slider(value: .constant(50), in: 0...255)
-        Text("50")
+        Slider(value: $green, in: 0...255)
+        let roundedValue = Int(green.rounded())
+        Text("\(roundedValue)")
       }
       Text("Blue")
       HStack {
@@ -37,7 +40,7 @@ struct ContentView: View {
         Text("50")
       }
       Button("Set Color") {
-        shapeColor = Color(red: red/255, green: 50.0/255, blue: 50.0/255)
+        shapeColor = Color(red: red/255, green: green/255, blue: 50.0/255)
       }
     }
     .padding()
