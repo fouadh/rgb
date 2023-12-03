@@ -8,14 +8,18 @@
 import SwiftUI
 
 struct ContentView: View {
+  @State private var red = 50.0
+
   var body: some View {
     VStack(alignment: .center, spacing: 20) {
       Text("Color Picker").font(.title)
       RoundedRectangle(cornerRadius: 0)
+        .fill(Color(red: red/255, green: 50/255, blue: 50/255))
       Text("Red")
       HStack {
-        Slider(value: .constant(50), in: 0...255)
-        Text("50")
+        Slider(value: $red, in: 0...255)
+        let roundedValue = Int(red.rounded())
+        Text("\(roundedValue)")
       }
 
       Text("Green")
