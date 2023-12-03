@@ -21,10 +21,9 @@ struct ColorComponent {
 }
 
 struct ContentView: View {
-
   @State private var redComponent = ColorComponent(value: defaultRed)
-  @State private var green = defaultGreen
-  @State private var blue = defaultBlue
+  @State private var greenComponent = ColorComponent(value: defaultGreen)
+  @State private var blueComponent = ColorComponent(value: defaultBlue)
   @State private var shapeColor = defaultColor
 
   var body: some View {
@@ -42,19 +41,20 @@ struct ContentView: View {
 
       Text("Green")
       HStack {
-        Slider(value: $green, in: 0...255)
-        let roundedValue = Int(green.rounded())
+        Slider(value: $greenComponent.value, in: 0...255)
+        let roundedValue = Int(greenComponent.value.rounded())
         Text("\(roundedValue)")
       }
 
       Text("Blue")
       HStack {
-        Slider(value: $blue, in: 0...255)
-        Text("50")
+        Slider(value: $blueComponent.value, in: 0...255)
+        let roundedValue = Int(blueComponent.value.rounded())
+        Text("\(roundedValue)")
       }
 
       Button("Set Color") {
-        shapeColor = Color(red: redComponent.value/255, green: green/255, blue: blue/255)
+        shapeColor = Color(red: redComponent.value/255, green: greenComponent.value/255, blue: blueComponent.value/255)
       }
     }
     .padding()
