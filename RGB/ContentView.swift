@@ -18,6 +18,10 @@ struct ColorComponent {
   init(value: Double!) {
     self.value = value
   }
+
+  var valueAsInt: Int {
+    Int(value.rounded())
+  }
 }
 
 struct ContentView: View {
@@ -35,22 +39,19 @@ struct ContentView: View {
       Text("Red")
       HStack {
         Slider(value: $redComponent.value, in: 0...255)
-        let roundedValue = Int(redComponent.value.rounded())
-        Text("\(roundedValue)")
+        Text("\(redComponent.valueAsInt)")
       }
 
       Text("Green")
       HStack {
         Slider(value: $greenComponent.value, in: 0...255)
-        let roundedValue = Int(greenComponent.value.rounded())
-        Text("\(roundedValue)")
+        Text("\(greenComponent.valueAsInt)")
       }
 
       Text("Blue")
       HStack {
         Slider(value: $blueComponent.value, in: 0...255)
-        let roundedValue = Int(blueComponent.value.rounded())
-        Text("\(roundedValue)")
+        Text("\(blueComponent.valueAsInt)")
       }
 
       Button("Set Color") {
