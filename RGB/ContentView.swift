@@ -7,9 +7,11 @@
 
 import SwiftUI
 
+let defaultColor = RGBColor(red: ColorIntensity(value: 128.0), green: ColorIntensity(value: 128.0), blue: ColorIntensity(value: 128.0))
+
 struct ContentView: View {
-  @State private var rgbColor = RGBColor()
-  @State private var shapeColor = RGBColor().value  // is there a way to get this from the rgbColor property instead?
+  @State private var rgbColor = defaultColor
+  @State private var shapeColor = defaultColor.value
 
   var body: some View {
     VStack(alignment: .center, spacing: 20) {
@@ -30,7 +32,7 @@ struct RGBColor {
   var green: ColorIntensity
   var blue: ColorIntensity
 
-  init(red: ColorIntensity = ColorIntensity(value: 128.0), green: ColorIntensity = ColorIntensity(value: 128.0), blue: ColorIntensity = ColorIntensity(value: 128.0)) {
+  init(red: ColorIntensity, green: ColorIntensity, blue: ColorIntensity) {
     self.red = red
     self.green = green
     self.blue = blue
