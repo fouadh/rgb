@@ -7,46 +7,47 @@
 
 import SwiftUI
 
-struct ColorComponent {
+struct ColorIntensity {
+  // intensity value: a number between 0 and 255
   var value: Double!
 
   init(value: Double!) {
     self.value = value
   }
 
-  var intValue: Int {
+  var rounded: Int {
     Int(value.rounded())
   }
 
-  var normalizedValue: Double {
+  var percentage: Double {
     return value / 255
   }
 }
 
-let defaultRed = ColorComponent(value: 128.0)
-let defaultGreen = ColorComponent(value: 128.0)
-let defaultBlue = ColorComponent(value: 128.0)
-let defaultColor = Color(red: defaultRed.normalizedValue, green: defaultGreen.normalizedValue, blue: defaultBlue.normalizedValue)
+let defaultRedIntensity = ColorIntensity(value: 128.0)
+let defaultGreenIntensity = ColorIntensity(value: 128.0)
+let defaultBlueIntensity = ColorIntensity(value: 128.0)
+let defaultColor = Color(red: defaultRedIntensity.percentage, green: defaultGreenIntensity.percentage, blue: defaultBlueIntensity.percentage)
 
 struct RGBColor {
-  var red = defaultRed
-  var green = defaultGreen
-  var blue = defaultBlue
+  var red = defaultRedIntensity
+  var green = defaultGreenIntensity
+  var blue = defaultBlueIntensity
 
   var value: Color {
-    Color(red: red.normalizedValue, green: green.normalizedValue, blue: blue.normalizedValue)
+    Color(red: red.percentage, green: green.percentage, blue: blue.percentage)
   }
 }
 
-struct ColorComponentSlider: View {
+struct ColorIntensitySlider: View {
   var label: String
-  @Binding var value: ColorComponent
+  @Binding var intensity: ColorIntensity
 
   var body: some View {
     Text(label)
     HStack {
-      Slider(value: $value.value, in: 0...255)
-      Text("\(value.intValue)")
+      Slider(value: $intensity.value, in: 0...255)
+      Text("\(intensity.rounded)")
     }
   }
 }
@@ -60,9 +61,9 @@ struct ContentView: View {
       Text("Color Picker").font(.title)
       RoundedRectangle(cornerRadius: 0)
         .fill(shapeColor)
-      ColorComponentSlider(label: "Red", value: $rgbColor.red)
-      ColorComponentSlider(label: "Green", value: $rgbColor.green)
-      ColorComponentSlider(label: "Blue", value: $rgbColor.blue)
+      ColorIntensitySlider(label: "Red", intensity: $rgbColor.red)
+      ColorIntensitySlider(label: "Green", intensity: $rgbColor.green)
+      ColorIntensitySlider(label: "Blue", intensity: $rgbColor.blue)
       Button("Set Color") {
         shapeColor = rgbColor.value
       }
