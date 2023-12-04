@@ -52,6 +52,16 @@ struct ColorIntensitySlider: View {
   }
 }
 
+struct RGBColorSelector: View {
+  @Binding var color: RGBColor
+
+  var body: some View {
+    ColorIntensitySlider(label: "Red", intensity: $color.red)
+    ColorIntensitySlider(label: "Green", intensity: $color.green)
+    ColorIntensitySlider(label: "Blue", intensity: $color.blue)
+  }
+}
+
 struct ContentView: View {
   @State private var rgbColor = RGBColor()
   @State private var shapeColor = defaultColor
@@ -59,11 +69,8 @@ struct ContentView: View {
   var body: some View {
     VStack(alignment: .center, spacing: 20) {
       Text("Color Picker").font(.title)
-      RoundedRectangle(cornerRadius: 0)
-        .fill(shapeColor)
-      ColorIntensitySlider(label: "Red", intensity: $rgbColor.red)
-      ColorIntensitySlider(label: "Green", intensity: $rgbColor.green)
-      ColorIntensitySlider(label: "Blue", intensity: $rgbColor.blue)
+      RoundedRectangle(cornerRadius: 0).fill(shapeColor)
+      RGBColorSelector(color: $rgbColor)
       Button("Set Color") {
         shapeColor = rgbColor.value
       }
