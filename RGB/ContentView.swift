@@ -7,6 +7,40 @@
 
 import SwiftUI
 
+struct ContentView: View {
+  @State private var rgbColor = RGBColor()
+  @State private var shapeColor = RGBColor().value  // is there a way to get this from the rgbColor property instead?
+
+  var body: some View {
+    VStack(alignment: .center, spacing: 20) {
+      Text("Color Picker").font(.title)
+      RoundedRectangle(cornerRadius: 0).fill(shapeColor)
+      RGBColorSelector(color: $rgbColor)
+      Button("Set Color") {
+        shapeColor = rgbColor.value
+      }
+    }
+    .padding()
+  }
+}
+
+// I put all of the following code below this section to respect the exercise criteria to keep all in the same file but I would probably move those snippets in their own files.
+struct RGBColor {
+  var red: ColorIntensity
+  var green: ColorIntensity
+  var blue: ColorIntensity
+
+  init(red: ColorIntensity = ColorIntensity(value: 128.0), green: ColorIntensity = ColorIntensity(value: 128.0), blue: ColorIntensity = ColorIntensity(value: 128.0)) {
+    self.red = red
+    self.green = green
+    self.blue = blue
+  }
+
+  var value: Color {
+    Color(red: red.percentage, green: green.percentage, blue: blue.percentage)
+  }
+}
+
 struct ColorIntensity {
   // intensity value: a number between 0 and 255
   var value: Double!
@@ -21,21 +55,6 @@ struct ColorIntensity {
 
   var percentage: Double {
     return value / 255
-  }
-}
-
-let defaultRedIntensity = ColorIntensity(value: 128.0)
-let defaultGreenIntensity = ColorIntensity(value: 128.0)
-let defaultBlueIntensity = ColorIntensity(value: 128.0)
-let defaultColor = Color(red: defaultRedIntensity.percentage, green: defaultGreenIntensity.percentage, blue: defaultBlueIntensity.percentage)
-
-struct RGBColor {
-  var red = defaultRedIntensity
-  var green = defaultGreenIntensity
-  var blue = defaultBlueIntensity
-
-  var value: Color {
-    Color(red: red.percentage, green: green.percentage, blue: blue.percentage)
   }
 }
 
@@ -59,23 +78,6 @@ struct RGBColorSelector: View {
     ColorIntensitySlider(label: "Red", intensity: $color.red)
     ColorIntensitySlider(label: "Green", intensity: $color.green)
     ColorIntensitySlider(label: "Blue", intensity: $color.blue)
-  }
-}
-
-struct ContentView: View {
-  @State private var rgbColor = RGBColor()
-  @State private var shapeColor = defaultColor
-
-  var body: some View {
-    VStack(alignment: .center, spacing: 20) {
-      Text("Color Picker").font(.title)
-      RoundedRectangle(cornerRadius: 0).fill(shapeColor)
-      RGBColorSelector(color: $rgbColor)
-      Button("Set Color") {
-        shapeColor = rgbColor.value
-      }
-    }
-    .padding()
   }
 }
 
