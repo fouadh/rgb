@@ -23,6 +23,21 @@ struct ColorComponent {
   }
 }
 
+let defaultRed = ColorComponent(value: 128.0)
+let defaultGreen = ColorComponent(value: 128.0)
+let defaultBlue = ColorComponent(value: 128.0)
+let defaultColor = Color(red: defaultRed.normalizedValue, green: defaultGreen.normalizedValue, blue: defaultBlue.normalizedValue)
+
+struct RGBColor {
+  var red = defaultRed
+  var green = defaultGreen
+  var blue = defaultBlue
+
+  var value: Color {
+    Color(red: red.normalizedValue, green: green.normalizedValue, blue: blue.normalizedValue)
+  }
+}
+
 struct ColorComponentSlider: View {
   var label: String
   @Binding var value: ColorComponent
@@ -36,16 +51,8 @@ struct ColorComponentSlider: View {
   }
 }
 
-let defaultRed = ColorComponent(value: 128.0)
-let defaultGreen = ColorComponent(value: 128.0)
-let defaultBlue = ColorComponent(value: 128.0)
-let defaultColor = Color(red: defaultRed.normalizedValue, green: defaultGreen.normalizedValue, blue: defaultBlue.normalizedValue)
-
-
 struct ContentView: View {
-  @State private var redComponent = defaultRed
-  @State private var greenComponent = defaultGreen
-  @State private var blueComponent = defaultBlue
+  @State private var rgbColor = RGBColor()
   @State private var shapeColor = defaultColor
 
   var body: some View {
@@ -53,11 +60,11 @@ struct ContentView: View {
       Text("Color Picker").font(.title)
       RoundedRectangle(cornerRadius: 0)
         .fill(shapeColor)
-      ColorComponentSlider(label: "Red", value: $redComponent)
-      ColorComponentSlider(label: "Green", value: $greenComponent)
-      ColorComponentSlider(label: "Blue", value: $blueComponent)
+      ColorComponentSlider(label: "Red", value: $rgbColor.red)
+      ColorComponentSlider(label: "Green", value: $rgbColor.green)
+      ColorComponentSlider(label: "Blue", value: $rgbColor.blue)
       Button("Set Color") {
-        shapeColor = Color(red: redComponent.normalizedValue, green: greenComponent.normalizedValue, blue: blueComponent.normalizedValue)
+        shapeColor = rgbColor.value
       }
     }
     .padding()
