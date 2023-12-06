@@ -1,10 +1,12 @@
 # Introduction
 
-This app allows the user to select red, green and blue intensities to setup a color in a rounded rectange.
+This app allows the user to select red, green and blue intensities to setup a color in a preview view.
 
 It is the homework for the module 1 of [Kodeko iOS Bootcamp](https://bootcamp.kodeco.com/accelerator/ios).
 
-![image](./docs/rgb.png)
+<p align="center">
+  <img src="./doc/rgb.png" width="400" />
+</p>
 
 # Assignment
 
