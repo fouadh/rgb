@@ -26,7 +26,6 @@ struct ContentView: View {
   }
 }
 
-// I put all of the following code below this section to respect the exercise criteria to keep all in the same file but I would probably move those snippets in their own files.
 struct RGBColor {
   var red: ColorIntensity
   var green: ColorIntensity
