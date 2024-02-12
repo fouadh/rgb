@@ -11,7 +11,7 @@ let defaultColor = RGBColor(red: ColorIntensity(value: 128.0), green: ColorInten
 
 struct ContentView: View {
   @State private var rgbColor = defaultColor
-  @State private var shapeColor = defaultColor.value
+  @State private var shapeColor = ContentView.toColor(rgbColor: defaultColor)
 
   var body: some View {
     VStack(alignment: .center, spacing: 20) {
@@ -19,10 +19,14 @@ struct ContentView: View {
       RoundedRectangle(cornerRadius: 0).fill(shapeColor)
       RGBColorSelector(color: $rgbColor)
       Button("Set Color") {
-        shapeColor = rgbColor.value
+        shapeColor = ContentView.toColor(rgbColor: rgbColor)
       }
     }
     .padding()
+  }
+
+  static func toColor(rgbColor: RGBColor) -> Color {
+    return Color(red: rgbColor.red.percentage, green: rgbColor.green.percentage, blue: rgbColor.blue.percentage)
   }
 }
 
@@ -35,10 +39,6 @@ struct RGBColor {
     self.red = red
     self.green = green
     self.blue = blue
-  }
-
-  var value: Color {
-    Color(red: red.percentage, green: green.percentage, blue: blue.percentage)
   }
 }
 
