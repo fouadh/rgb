@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-let defaultColor = RGBColor(red: ColorIntensity(value: 128.0), green: ColorIntensity(value: 128.0), blue: ColorIntensity(value: 128.0))
+let defaultColor = RGBColor(red: ColorIntensity(value: 0), green: ColorIntensity(value: 0), blue: ColorIntensity(value: 0))
 
 struct ContentView: View {
   @State private var rgbColor = defaultColor
@@ -20,7 +20,8 @@ struct ContentView: View {
       RGBColorSliderView(color: $rgbColor)
       SetColorButton(rgbColor: $rgbColor, shapeColor: $shapeColor)
     }
-    .padding()
+    .background(.white)
+    .padding(20)
   }
 
   static func toColor(rgbColor: RGBColor) -> Color {
