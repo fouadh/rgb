@@ -10,7 +10,145 @@ It is the homework for the module 1 of [Kodeko iOS Bootcamp](https://bootcamp.ko
 
 # Assignment
 
-## Part 1
+## Week 2
+
+a) Describe the two size classes in iOS.
+
+- compact: indicates that the space is constrained
+- regular: indicates that there is more space to layout the view components
+
+b) What is Continuous Learning, and why is it important in mobile development?
+
+It basically means always learning to get new skills and extend our knowledge. It is important in mobile development because things are moving fast and change is continuous. So we want to be up to date to create and make evolve our apps.
+
+c) How can you find out what modifiers a View has?
+
+One way is to select the view in the preview, go to the attributes inspector and select the "Add Modifier" field. The list of modifiers for this view will be visible. 
+
+d) What is a breakpoint?
+
+It is a location in a program where we want the app to pause when we are running it in debug mode. 
+
+e) How can you access environment values in your App?
+
+Thanks to then `@Environment` annotation.
+
+f) How can you determine, in code, if the App is in Dark or Light Mode?
+
+We can retrieve the color schema thanks to an environment property, using a syntax similar to below:
+
+```Swift
+  @Environment(\.colorScheme) var colorScheme
+```
+
+Then, in the code we can have some logic to check if the app is in dark or light mode, for example:
+
+```Swift
+if colorScheme == .dark {
+  // dark mode
+} else {
+  // light mode
+}
+```
+
+g) Why are magic numbers an issue, and how should you avoid them?
+
+A magic number is an hardcoded value that appears in the code. They are an issue because it can be hard to understand their meaning or they can be duplicated in different areas of the code, making the app harder to maintain.
+
+To avoid them, we can create named constants with a meaningful name and use those constants instead of the hardcoded values.
+
+h) How can you view your App in Light and Dark Modes simultaneously?
+
+We can create different previews, one for each mode. For example:
+
+```Swift
+#Preview {
+  ContentView()
+}
+
+#Preview {
+  ContentView().preferredColorScheme(.dark)
+}
+```
+
+i) Below is an image of the Canvas from Xcode. The Canvas is in selectable mode. Can you explain why the red background does not cover the entire button area?
+
+It is probably because the padding of the component has been defined after the background color has been set. Moving the padding definition before the color definition should fix it.
+
+j) Modifier padding(10) adds padding to the view's top, bottom, left, and right sides. How could a padding of 10 be added to only the left and right sides of the view? The answer for this question should be a short section of code.
+
+Here is how it could be done:
+
+```Swift
+view.padding(.horizontal)
+```
+
+k) Provide two reasons why you would want to extract views.
+
+- make the code easier to read & avoid spaghetti code
+- make views reusable
+
+l) How can you determine, in code, if the device is in Portrait or Landscape mode?
+
+We can use size classes for this. For example:
+
+```Swift
+
+  // retrieve the environment classes somewhere
+  @Environment(\.verticalSizeClass) var verticalSizeClass
+  @Environment(\.horizontalSizeClass) var horizontalSizeClass
+  
+  // ...and use them somewhere else
+  if verticalSizeClass == .regular && horizontalSizeClass == .compact {
+    // portrait mode
+  } else {
+    // landscape mode
+  }
+```
+
+m) What is a literal value?
+
+It is usually a number, a string, boolean, etc.
+
+o) What are the safe areas?
+
+A safe area is used to define a view that will not contain any navigation bar, tab bar or toolbar.
+
+
+p) This line of code was in the lesson on animation. Can you state in English what the line means?
+
+.frame(width: wideShapes ? 200 : 100)
+
+
+q) Describe the two transitions you were introduced to in this week’s lesson.
+
+The scale and opacity transitions.
+
+
+r) In Bullseye, the Game struct is what type of object?
+
+It's a model object.
+
+s) What are SFSymbols?
+
+Those are symboles created by Apple to be used in iOS (and macOS, etc.) apps.
+
+t) What is the difference between “step into” and “step over " in the debugger?”
+
+- step into: the debugger will go in the code of the function that is called at the current point of execution. 
+- step over:the debugger will not go in the code of the function that is called at the current point of execution.
+
+u) Name some items you would place in the Asset Catalog (Assets.)
+
+- colors
+- app icon
+
+v) How do you change the Display Name of your app?
+
+In the project navigator, we select the app target and the General tab. In the identity section, we are able to change the app's display name.
+
+
+## Week 1
 
 a) What does the command ‘git status’ output?
 
