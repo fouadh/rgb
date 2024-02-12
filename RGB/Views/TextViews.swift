@@ -13,6 +13,7 @@ struct TitleText: View {
   var body: some View {
     Text(title)
       .font(.largeTitle)
+      .foregroundColor(Color("TitleColor"))
   }
 }
 
@@ -38,4 +39,12 @@ struct IntensityText: View {
     ColorText(label: "a color")
     IntensityText(value: .constant(ColorIntensity(value: 100.123)))
   }
+}
+
+#Preview {
+  VStack {
+    TitleText(title: "a title")
+    ColorText(label: "a color")
+    IntensityText(value: .constant(ColorIntensity(value: 100.123)))
+  }.preferredColorScheme(.dark)
 }

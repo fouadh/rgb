@@ -14,13 +14,13 @@ struct ContentView: View {
   @State private var shapeColor = ContentView.toColor(rgbColor: defaultColor)
 
   var body: some View {
-    VStack(alignment: .center, spacing: 20) {
+    VStack {
       TitleText(title: "Color Picker")
       ForegroundView(color: $shapeColor)
       RGBColorSliderView(color: $rgbColor)
       SetColorButton(rgbColor: $rgbColor, shapeColor: $shapeColor)
     }
-    .background(.white)
+    .background(Color("BackgroundColor"))
     .padding(20)
   }
 
@@ -42,4 +42,8 @@ struct SetColorButton: View {
 
 #Preview {
   ContentView()
+}
+
+#Preview {
+  ContentView().preferredColorScheme(.dark)
 }
