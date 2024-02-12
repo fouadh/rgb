@@ -42,36 +42,6 @@ struct RGBColor {
   }
 }
 
-struct ColorIntensity {
-  // intensity value: a number between 0 and 255
-  var value: Double!
-
-  init(value: Double!) {
-    self.value = value
-  }
-
-  var rounded: Int {
-    Int(value.rounded())
-  }
-
-  var percentage: Double {
-    return value / 255
-  }
-}
-
-struct ColorIntensitySlider: View {
-  var label: String
-  @Binding var intensity: ColorIntensity
-
-  var body: some View {
-    Text(label)
-    HStack {
-      Slider(value: $intensity.value, in: 0...255)
-      Text("\(intensity.rounded)")
-    }
-  }
-}
-
 struct RGBColorSelector: View {
   @Binding var color: RGBColor
 
