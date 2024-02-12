@@ -12,24 +12,24 @@ struct ContentView: View {
   @Environment(\.horizontalSizeClass) var horizontalSizeClass
 
   @State private var rgbColor = Constants.General.defaultColor
-  @State private var shapeColor = ContentView.toColor(rgbColor: Constants.General.defaultColor)
+  @State private var foregroundColor = ContentView.toColor(rgbColor: Constants.General.defaultColor)
 
   var body: some View {
     VStack {
       if verticalSizeClass == .regular && horizontalSizeClass == .compact {
         TitleText(title: "Color Picker")
-        ForegroundView(color: $shapeColor)
+        ForegroundView(color: $foregroundColor)
         RGBColorSliderView(color: $rgbColor)
-        SetColorButton(rgbColor: $rgbColor, shapeColor: $shapeColor)
+        SetColorButton(rgbColor: $rgbColor, foregroundColor: $foregroundColor)
       } else {
         HStack {
           VStack {
             TitleText(title: "Color Picker")
-            ForegroundView(color: $shapeColor).padding(.horizontal)
+            ForegroundView(color: $foregroundColor).padding(.horizontal)
           }
           VStack {
             RGBColorSliderView(color: $rgbColor)
-            SetColorButton(rgbColor: $rgbColor, shapeColor: $shapeColor)
+            SetColorButton(rgbColor: $rgbColor, foregroundColor: $foregroundColor)
           }
         }
       }
@@ -45,11 +45,11 @@ struct ContentView: View {
 
 struct SetColorButton: View {
   @Binding var rgbColor: RGBColor
-  @Binding var shapeColor: Color
+  @Binding var foregroundColor: Color
 
   var body: some View {
     Button("Set Color") {
-      shapeColor = ContentView.toColor(rgbColor: rgbColor)
+      foregroundColor = ContentView.toColor(rgbColor: rgbColor)
     }
     .padding(Constants.General.padding)
     .background(Color("ButtonColor"))
