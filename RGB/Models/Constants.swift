@@ -14,5 +14,6 @@ enum Constants {
     public static let strokeWidth = CGFloat(2)
     public static let borderWidth = CGFloat(8)
     public static let padding = CGFloat(20)
+    public static let title = "Color Picker"
   }
 }

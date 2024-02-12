@@ -17,21 +17,9 @@ struct ContentView: View {
   var body: some View {
     VStack {
       if verticalSizeClass == .regular && horizontalSizeClass == .compact {
-        TitleText(title: "Color Picker")
-        ForegroundView(color: $foregroundColor)
-        RGBColorSliderView(color: $rgbColor)
-        SetColorButton(rgbColor: $rgbColor, foregroundColor: $foregroundColor)
+        PortraitView(rgbColor: $rgbColor, foregroundColor: $foregroundColor)
       } else {
-        HStack {
-          VStack {
-            TitleText(title: "Color Picker")
-            ForegroundView(color: $foregroundColor).padding(.horizontal)
-          }
-          VStack {
-            RGBColorSliderView(color: $rgbColor)
-            SetColorButton(rgbColor: $rgbColor, foregroundColor: $foregroundColor)
-          }
-        }
+        LandscapeView(rgbColor: $rgbColor, foregroundColor: $foregroundColor)
       }
     }
     .background(Color("BackgroundColor"))
@@ -40,6 +28,36 @@ struct ContentView: View {
 
   static func toColor(rgbColor: RGBColor) -> Color {
     return Color(red: rgbColor.red.percentage, green: rgbColor.green.percentage, blue: rgbColor.blue.percentage)
+  }
+}
+
+struct PortraitView: View {
+  @Binding var rgbColor: RGBColor
+  @Binding var foregroundColor: Color
+
+  var body: some View {
+    TitleText(title: Constants.General.title)
+    ForegroundView(color: $foregroundColor)
+    RGBColorSliderView(color: $rgbColor)
+    SetColorButton(rgbColor: $rgbColor, foregroundColor: $foregroundColor)
+  }
+}
+
+struct LandscapeView: View {
+  @Binding var rgbColor: RGBColor
+  @Binding var foregroundColor: Color
+
+  var body: some View {
+    HStack {
+      VStack {
+        TitleText(title: Constants.General.title)
+        ForegroundView(color: $foregroundColor).padding(.horizontal)
+      }
+      VStack {
+        RGBColorSliderView(color: $rgbColor)
+        SetColorButton(rgbColor: $rgbColor, foregroundColor: $foregroundColor)
+      }
+    }
   }
 }
 
