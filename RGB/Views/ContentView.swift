@@ -16,7 +16,7 @@ struct ContentView: View {
   var body: some View {
     VStack(alignment: .center, spacing: 20) {
       TitleText(title: "Color Picker")
-      RoundedRectangle(cornerRadius: 0).fill(shapeColor)
+      ForegroundView(color: $shapeColor)
       RGBColorSliderView(color: $rgbColor)
       Button("Set Color") {
         shapeColor = ContentView.toColor(rgbColor: rgbColor)
