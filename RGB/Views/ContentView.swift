@@ -17,7 +17,7 @@ struct ContentView: View {
     VStack(alignment: .center, spacing: 20) {
       Text("Color Picker").font(.title)
       RoundedRectangle(cornerRadius: 0).fill(shapeColor)
-      RGBColorSelector(color: $rgbColor)
+      RGBColorSliderView(color: $rgbColor)
       Button("Set Color") {
         shapeColor = ContentView.toColor(rgbColor: rgbColor)
       }
@@ -27,16 +27,6 @@ struct ContentView: View {
 
   static func toColor(rgbColor: RGBColor) -> Color {
     return Color(red: rgbColor.red.percentage, green: rgbColor.green.percentage, blue: rgbColor.blue.percentage)
-  }
-}
-
-struct RGBColorSelector: View {
-  @Binding var color: RGBColor
-
-  var body: some View {
-    ColorIntensitySlider(label: "Red", intensity: $color.red)
-    ColorIntensitySlider(label: "Green", intensity: $color.green)
-    ColorIntensitySlider(label: "Blue", intensity: $color.blue)
   }
 }
 
