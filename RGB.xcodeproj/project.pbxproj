@@ -34,6 +34,23 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		C81E2BDA2B7A24C700CB1C22 /* App */ = {
+			isa = PBXGroup;
+			children = (
+				C8A2C3D82B1B886600F3F2EC /* Assets.xcassets */,
+				C8A2C3D42B1B886600F3F2EC /* RGBApp.swift */,
+			);
+			path = App;
+			sourceTree = "<group>";
+		};
+		C81E2BDB2B7A24CF00CB1C22 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				C8A2C3D62B1B886600F3F2EC /* ContentView.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
 		C8A2C3C82B1B886600F3F2EC = {
 			isa = PBXGroup;
 			children = (
@@ -54,9 +71,8 @@
 		C8A2C3D32B1B886600F3F2EC /* RGB */ = {
 			isa = PBXGroup;
 			children = (
-				C8A2C3D42B1B886600F3F2EC /* RGBApp.swift */,
-				C8A2C3D62B1B886600F3F2EC /* ContentView.swift */,
-				C8A2C3D82B1B886600F3F2EC /* Assets.xcassets */,
+				C81E2BDA2B7A24C700CB1C22 /* App */,
+				C81E2BDB2B7A24CF00CB1C22 /* Views */,
 				C8A2C3DA2B1B886600F3F2EC /* Preview Content */,
 			);
 			path = RGB;
