@@ -37,6 +37,12 @@ struct SetColorButton: View {
     Button("Set Color") {
       shapeColor = ContentView.toColor(rgbColor: rgbColor)
     }
+    .padding(20)
+    .background(Color("ButtonColor"))
+    .overlay(RoundedRectangle(cornerRadius: 20).strokeBorder(Color.white, lineWidth: 2))
+    .foregroundColor(.white)
+    .bold()
+    .cornerRadius(20)
   }
 }
 
