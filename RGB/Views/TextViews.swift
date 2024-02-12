@@ -24,9 +24,18 @@ struct ColorText: View {
   }
 }
 
+struct IntensityText: View {
+  @Binding var value: ColorIntensity
+
+  var body: some View {
+    Text("\(value.rounded)")
+  }
+}
+
 #Preview {
   VStack {
     TitleText(title: "a title")
     ColorText(label: "a color")
+    IntensityText(value: .constant(ColorIntensity(value: 100.123)))
   }
 }

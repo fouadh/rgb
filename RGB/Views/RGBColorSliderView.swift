@@ -25,11 +25,11 @@ struct ColorIntensitySlider: View {
     ColorText(label: label)
     HStack {
       Slider(value: $intensity.value, in: 0...255)
-      Text("\(intensity.rounded)")
+      IntensityText(value: $intensity)
     }
   }
 }
 
 #Preview {
-  RGBColorSliderView(color: .constant(RGBColor(red: ColorIntensity(value: 100), green: ColorIntensity(value:150), blue: ColorIntensity(value:50))))
+  RGBColorSliderView(color: .constant(RGBColor(red: ColorIntensity(value: 100.123), green: ColorIntensity(value:150.456), blue: ColorIntensity(value:50.123))))
 }
