@@ -18,15 +18,24 @@ struct ContentView: View {
       TitleText(title: "Color Picker")
       ForegroundView(color: $shapeColor)
       RGBColorSliderView(color: $rgbColor)
-      Button("Set Color") {
-        shapeColor = ContentView.toColor(rgbColor: rgbColor)
-      }
+      SetColorButton(rgbColor: $rgbColor, shapeColor: $shapeColor)
     }
     .padding()
   }
 
   static func toColor(rgbColor: RGBColor) -> Color {
     return Color(red: rgbColor.red.percentage, green: rgbColor.green.percentage, blue: rgbColor.blue.percentage)
+  }
+}
+
+struct SetColorButton: View {
+  @Binding var rgbColor: RGBColor
+  @Binding var shapeColor: Color
+
+  var body: some View {
+    Button("Set Color") {
+      shapeColor = ContentView.toColor(rgbColor: rgbColor)
+    }
   }
 }
 
