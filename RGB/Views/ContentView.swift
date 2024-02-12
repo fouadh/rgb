@@ -30,18 +30,6 @@ struct ContentView: View {
   }
 }
 
-struct RGBColor {
-  var red: ColorIntensity
-  var green: ColorIntensity
-  var blue: ColorIntensity
-
-  init(red: ColorIntensity, green: ColorIntensity, blue: ColorIntensity) {
-    self.red = red
-    self.green = green
-    self.blue = blue
-  }
-}
-
 struct RGBColorSelector: View {
   @Binding var color: RGBColor
 
