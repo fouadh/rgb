@@ -22,7 +22,7 @@ struct ColorIntensitySlider: View {
   @Binding var intensity: ColorIntensity
 
   var body: some View {
-    Text(label)
+    ColorText(label: label)
     HStack {
       Slider(value: $intensity.value, in: 0...255)
       Text("\(intensity.rounded)")

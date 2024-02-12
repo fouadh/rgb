@@ -16,6 +16,17 @@ struct TitleText: View {
   }
 }
 
+struct ColorText: View {
+  var label: String
+
+  var body: some View {
+    Text(label)
+  }
+}
+
 #Preview {
-  TitleText(title: "a title")
+  VStack {
+    TitleText(title: "a title")
+    ColorText(label: "a color")
+  }
 }
