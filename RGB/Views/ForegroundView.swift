@@ -13,7 +13,7 @@ struct ForegroundView: View {
   var body: some View {
     RoundedRectangle(cornerRadius: 0)
       .foregroundColor(color)
-      .border(Color("ForegroundBorderColor"), width: 8)
+      .border(Color("ForegroundBorderColor"), width: Constants.General.borderWidth)
   }
 }
 

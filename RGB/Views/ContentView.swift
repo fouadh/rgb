@@ -7,11 +7,9 @@
 
 import SwiftUI
 
-let defaultColor = RGBColor(red: ColorIntensity(value: 0), green: ColorIntensity(value: 0), blue: ColorIntensity(value: 0))
-
 struct ContentView: View {
-  @State private var rgbColor = defaultColor
-  @State private var shapeColor = ContentView.toColor(rgbColor: defaultColor)
+  @State private var rgbColor = Constants.General.defaultColor
+  @State private var shapeColor = ContentView.toColor(rgbColor: Constants.General.defaultColor)
 
   var body: some View {
     VStack {
@@ -21,7 +19,7 @@ struct ContentView: View {
       SetColorButton(rgbColor: $rgbColor, shapeColor: $shapeColor)
     }
     .background(Color("BackgroundColor"))
-    .padding(20)
+    .padding(Constants.General.padding)
   }
 
   static func toColor(rgbColor: RGBColor) -> Color {
@@ -37,12 +35,12 @@ struct SetColorButton: View {
     Button("Set Color") {
       shapeColor = ContentView.toColor(rgbColor: rgbColor)
     }
-    .padding(20)
+    .padding(Constants.General.padding)
     .background(Color("ButtonColor"))
-    .overlay(RoundedRectangle(cornerRadius: 20).strokeBorder(Color.white, lineWidth: 2))
+    .overlay(RoundedRectangle(cornerRadius: Constants.General.cornerRadius).strokeBorder(Color.white, lineWidth: Constants.General.strokeWidth))
     .foregroundColor(.white)
     .bold()
-    .cornerRadius(20)
+    .cornerRadius(Constants.General.cornerRadius)
   }
 }
 
