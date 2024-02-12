@@ -22,6 +22,7 @@ struct ColorText: View {
 
   var body: some View {
     Text(label)
+      .foregroundColor(Color("ColorLabelColor"))
   }
 }
 
@@ -30,6 +31,8 @@ struct IntensityText: View {
 
   var body: some View {
     Text("\(value.rounded)")
+      .foregroundColor(Color("IntensityLabelColor"))
+      .bold()
   }
 }
 
