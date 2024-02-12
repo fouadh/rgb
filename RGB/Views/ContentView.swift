@@ -8,15 +8,31 @@
 import SwiftUI
 
 struct ContentView: View {
+  @Environment(\.verticalSizeClass) var verticalSizeClass
+  @Environment(\.horizontalSizeClass) var horizontalSizeClass
+
   @State private var rgbColor = Constants.General.defaultColor
   @State private var shapeColor = ContentView.toColor(rgbColor: Constants.General.defaultColor)
 
   var body: some View {
     VStack {
-      TitleText(title: "Color Picker")
-      ForegroundView(color: $shapeColor)
-      RGBColorSliderView(color: $rgbColor)
-      SetColorButton(rgbColor: $rgbColor, shapeColor: $shapeColor)
+      if verticalSizeClass == .regular && horizontalSizeClass == .compact {
+        TitleText(title: "Color Picker")
+        ForegroundView(color: $shapeColor)
+        RGBColorSliderView(color: $rgbColor)
+        SetColorButton(rgbColor: $rgbColor, shapeColor: $shapeColor)
+      } else {
+        HStack {
+          VStack {
+            TitleText(title: "Color Picker")
+            ForegroundView(color: $shapeColor).padding(.horizontal)
+          }
+          VStack {
+            RGBColorSliderView(color: $rgbColor)
+            SetColorButton(rgbColor: $rgbColor, shapeColor: $shapeColor)
+          }
+        }
+      }
     }
     .background(Color("BackgroundColor"))
     .padding(Constants.General.padding)
